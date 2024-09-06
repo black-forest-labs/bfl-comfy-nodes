@@ -18,7 +18,7 @@ def get_api_key():
         return API_KEY
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    key_file_path = os.path.join(dir_path, "flux_api_key.txt")
+    key_file_path = os.path.join(dir_path, "bfl_api_key.txt")
     error_message = (
         "API Key is required to use the Flux.1 API. "
         f"Please set the BFL_API_KEY environment variable to your API key "
@@ -58,7 +58,7 @@ class FluxBase:
         }
         if headers["x-key"] is None:
             raise Exception(
-                "No Flux key set. Set BFL_API_KEY, use FLUX_platform_key.txt, or pass 'api_key_override'"
+                "No Black Forest Labs API key set. Set environment variable BFL_API_KEY, insert key into bfl_api_key.txt, or through node field 'api_key_override'"
             )
         response = self._make_request(headers, data, files=None)
 
