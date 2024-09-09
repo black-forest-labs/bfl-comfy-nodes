@@ -1,4 +1,6 @@
-![image](https://github.com/user-attachments/assets/72397856-e33e-4e5a-8c8f-66d09d48fb7f)
+FLUX.1 API Node
+
+![image](https://github.com/user-attachments/assets/4ca34951-0380-4249-ba8b-a7adee33de7c)
 
 How to use:
 
@@ -10,4 +12,5 @@ How to use:
 
 4. Insert FluxAPI node into your workflow or drag the following image into the workflow to get started:
 
-![image](https://github.com/user-attachments/assets/eadde695-26c8-461d-88e3-a5a882dd9343)
+![image](https://github.com/user-attachments/assets/ec073cfd-1b62-4704-8a37-7b99118e1c7d)
+
