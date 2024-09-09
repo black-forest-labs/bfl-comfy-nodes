@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/912e571c-abf3-4b73-a2fe-ec47e14f3390)
+![image](https://github.com/user-attachments/assets/72397856-e33e-4e5a-8c8f-66d09d48fb7f)
 
 How to use:
 
@@ -10,4 +10,4 @@ How to use:
 
 4. Insert FluxAPI node into your workflow or drag the following image into the workflow to get started:
 
-![ComfyUI_temp_apxze_00015_](https://github.com/user-attachments/assets/78479997-57fa-4d81-94b0-39b339c41c51)
+![image](https://github.com/user-attachments/assets/eadde695-26c8-461d-88e3-a5a882dd9343)
