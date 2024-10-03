@@ -8,7 +8,9 @@ Welcome to the **BFL API Nodes** for ComfyUI! This setup allows you to integrate
 - Clone this repo in `ComfyUI/custom_nodes` directory. This directory hosts custom nodes that extend ComfyUI's functionality.
   
 ### Step 2: Set Up Your BFL API Key
-- To authenticate your requests, you need to provide your **BFL API key**. There are two ways to do this:
+- To authenticate your requests, you need to provide your **BFL API key** from the [Black Forest Labs API](https://api.bfl.ml). 
+  
+  There are two ways to provide your key to ComfyUI:
 
   1. **Environment Variable Method (Recommended)**
      - Export your BFL API key as an environment variable:
@@ -35,8 +37,6 @@ Welcome to the **BFL API Nodes** for ComfyUI! This setup allows you to integrate
 - **Invalid API Key Error**: Ensure your API key is correctly set either in the environment variable or the `bfl_api_key.txt` file.
 - **Node Not Appearing**: Confirm that `bfl_api.py` is placed somewhere in `ComfyUI/custom_nodes` and restart ComfyUI.
 
-For more information about the BFL API, visit the [BFL API documentation](https://docs.bfl.ml).
+For more information about the BFL API, visit the [Black Forest Labs API](https://api.bfl.ml).
 
 --- 
-
-This setup empowers you to integrate advanced BFL functionalities into your ComfyUI workflows. Enjoy the seamless power of BFL's API!
