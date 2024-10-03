@@ -20,23 +20,22 @@ Welcome to the **BFL API Nodes** for ComfyUI! This setup allows you to integrate
      - Ensure that the `bfl_api_key.txt` file is placed in the same directory as `bfl_api.py`.
 
 ### Step 3: Restart ComfyUI
-- After placing the `bfl_api.py` file and setting your API key, restart ComfyUI to apply the changes.
+- Restart ComfyUI if already open
 
-### Step 4: Insert the FLUX API Node into Your Workflow
+### Step 4: Insert a FLUX API Node into Your Workflow
 - Once ComfyUI has restarted, you can now insert a **FLUX API Node** such as **FLUX 1.1 [pro]** into your workflow.
 - To get started quickly, drag and drop the following node image into your workflow:
 
 ![ComfyUI_temp_tyitb_00002_](https://github.com/user-attachments/assets/44ba3add-6252-43ed-b7d7-68ef93f85ddd)
 
-### Step 5: Enjoy Enhanced Functionality
-- With the BFL API integrated, you're ready to leverage its capabilities within your projects.
+### Step 5: Enjoy the API
 
 ## Troubleshooting
 
 - **Invalid API Key Error**: Ensure your API key is correctly set either in the environment variable or the `bfl_api_key.txt` file.
-- **Node Not Appearing**: Confirm that `bfl_api.py` is placed in the correct directory and restart ComfyUI.
+- **Node Not Appearing**: Confirm that `bfl_api.py` is placed somewhere in `ComfyUI/custom_nodes` and restart ComfyUI.
 
-For more information about the BFL API, visit the [BFL API documentation](https://api.bfl.ml).
+For more information about the BFL API, visit the [BFL API documentation](https://docs.bfl.ml).
 
 --- 
 
