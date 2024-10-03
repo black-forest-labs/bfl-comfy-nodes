@@ -20,7 +20,7 @@ def get_api_key():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     key_file_path = os.path.join(dir_path, "bfl_api_key.txt")
     error_message = (
-        "API Key is required to use the Flux.1 API. "
+        "API Key is required to use the BFL API. "
         f"Please set the BFL_API_KEY environment variable to your API key "
         f"or place it in {key_file_path}."
     )
@@ -66,7 +66,7 @@ class FluxBase:
             return self._handle_response(response, headers)
         else:
             error_info = response.json()
-            raise Exception(f"Flux.1 API Message: {error_info}")
+            raise Exception(f"BFL API Message: {error_info}")
 
     def _make_request(self, headers, data, files):
         req = PreparedRequest()
@@ -98,15 +98,15 @@ class FluxBase:
                     image_response = requests.get(image_url)
                     return self._process_image_response(image_response)
                 elif result["status"] in ["Request Moderated", "Content Moderated"]:
-                    raise Exception(f"Flux.1 API Message: {result['status']}")
+                    raise Exception(f"BFL API Message: {result['status']}")
                 elif result["status"] == "Error":
-                    raise Exception(f"Flux.1 API Error: {result}")
+                    raise Exception(f"BFL API Error: {result}")
             elif response.status_code == 202:
                 time.sleep(10)
             elif time.time() - start_time > timeout:
-                raise Exception("Flux.1 API Timeout: Request took too long to complete")
+                raise Exception("BFL API Timeout: Request took too long to complete")
             else:
-                raise Exception(f"Flux.1 API Error: {response.json()}")
+                raise Exception(f"BFL API Error: {response.json()}")
 
     def _process_image_response(self, response):
         image = Image.open(BytesIO(response.content)).convert("RGBA")
@@ -114,13 +114,74 @@ class FluxBase:
         return (torch.from_numpy(image_array)[None,],)
 
 
-class FluxAPI(FluxBase):
-    API_ENDPOINT = "v1/image"
+class FluxPro(FluxBase):
+    API_ENDPOINT = "v1/flux-pro"
     POLL_ENDPOINT = "v1/get_result"
     ACCEPT = "image/*"
     INPUT_SPEC = {
         "required": {
-            "variant": (["flux.1-pro", "flux.1-dev"],),
+            "prompt": ("STRING", {"multiline": True}),
+        },
+        "optional": {
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "guidance": ("FLOAT", {"default": 2.5, "min": 1.5, "max": 5, "step": 0.01}),
+            "width": (
+                "INT",
+                {"default": 1024, "min": 0, "max": 1440, "step": 32},
+            ),
+            "height": (
+                "INT",
+                {"default": 1024, "min": 0, "max": 1440, "step": 32},
+            ),
+            "steps": ("INT", {"default": 50, "min": 10, "max": 100}),
+            "interval": ("INT", {"default": 1, "min": 1, "max": 10}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": True, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+
+class FluxDev(FluxBase):
+    API_ENDPOINT = "v1/flux-dev"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    INPUT_SPEC = {
+        "required": {
+            "prompt": ("STRING", {"multiline": True}),
+        },
+        "optional": {
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "guidance": ("FLOAT", {"default": 2.5, "min": 1.5, "max": 5, "step": 0.01}),
+            "width": (
+                "INT",
+                {"default": 1024, "min": 0, "max": 1440, "step": 32},
+            ),
+            "height": (
+                "INT",
+                {"default": 1024, "min": 0, "max": 1440, "step": 32},
+            ),
+            "steps": ("INT", {"default": 50, "min": 10, "max": 100}),
+            "interval": ("INT", {"default": 1, "min": 1, "max": 10}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": True, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+
+class FluxPro11(FluxBase):
+    API_ENDPOINT = "v1/flux-pro-1.1"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    INPUT_SPEC = {
+        "required": {
             "prompt": ("STRING", {"multiline": True}),
         },
         "optional": {
@@ -146,5 +207,7 @@ class FluxAPI(FluxBase):
 
 
 NODE_CLASS_MAPPINGS = {
-    "FluxAPI": FluxAPI,
+    "FLUX .1 [pro]": FluxPro,
+    "FLUX .1 [dev]": FluxDev,
+    "FLUX 1.1 [pro]": FluxPro11,
 }
