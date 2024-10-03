@@ -1,6 +1,6 @@
 BFL API Nodes
 
-![image](https://github.com/user-attachments/assets/fb6111b1-e454-4218-a83b-ad6891ccc7a4)
+![image](https://github.com/user-attachments/assets/efd81ed6-e7e6-48c9-b6ef-a0d2bcb0009a)
 
 How to use:
 
@@ -12,6 +12,7 @@ How to use:
 
 4. Insert a FLUX API node into your workflow or drag the following image into the workflow to get started:
 
-![image](https://github.com/user-attachments/assets/1edcb10f-b979-4857-be97-3d0b68d2bd39)
+![image](https://github.com/user-attachments/assets/c3dbe42d-80ce-45b5-a9f4-6854e845ded4)
+
 
 
