@@ -1,6 +1,6 @@
-FLUX.1 API Node
+BFL API Nodes
 
-![image](https://github.com/user-attachments/assets/4ca34951-0380-4249-ba8b-a7adee33de7c)
+![image](https://github.com/user-attachments/assets/fb6111b1-e454-4218-a83b-ad6891ccc7a4)
 
 How to use:
 
@@ -10,7 +10,8 @@ How to use:
 
 3. Restart ComfyUI
 
-4. Insert FluxAPI node into your workflow or drag the following image into the workflow to get started:
+4. Insert a FLUX API node into your workflow or drag the following image into the workflow to get started:
 
-![image](https://github.com/user-attachments/assets/ec073cfd-1b62-4704-8a37-7b99118e1c7d)
+![image](https://github.com/user-attachments/assets/1edcb10f-b979-4857-be97-3d0b68d2bd39)
+
 
