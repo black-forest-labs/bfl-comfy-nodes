@@ -12,7 +12,8 @@ How to use:
 
 4. Insert a FLUX API node into your workflow or drag the following image into the workflow to get started:
 
-![image](https://github.com/user-attachments/assets/c3dbe42d-80ce-45b5-a9f4-6854e845ded4)
+![ComfyUI_temp_tyitb_00002_](https://github.com/user-attachments/assets/fc6cc099-266c-4135-911d-11728597b3ec)
+
 
 
 
