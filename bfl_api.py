@@ -9,7 +9,7 @@ from PIL import Image
 from requests.models import PreparedRequest
 import base64
 
-ROOT_API = "https://api.bfl.ml/"
+ROOT_API = "https://api.us1.bfl.ai/"
 API_KEY = os.environ.get("BFL_API_KEY")
 
 
