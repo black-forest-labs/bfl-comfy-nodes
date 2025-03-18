@@ -1,4 +1,5 @@
 from .bfl_api import (
+    Flux,
     FluxPro,
     FluxDev,
     FluxPro11,
@@ -14,6 +15,7 @@ from .bfl_api import (
 )
 
 NODE_CLASS_MAPPINGS = {
+    "FLUX": Flux,
     "FLUX 1.0 [pro]": FluxPro,
     "FLUX 1.0 [dev]": FluxDev,
     "FLUX 1.1 [pro]": FluxPro11,

@@ -145,6 +145,73 @@ class FluxBase:
         return mask
 
 
+class Flux(FluxBase):
+    ACCEPT = "image/*"
+    API_ENDPOINT = "v1/flux-dev"
+    INPUT_SPEC = {
+        "required": {
+            "accept": (["image/*"], {"default": "image/*"}),
+            "api_endpoint": ([
+                "v1/flux-dev",
+                "v1/flux-pro",
+                "v1/flux-pro-1.0-fill",
+                "v1/flux-pro-1.0-canny",
+                "v1/flux-pro-1.0-depth",
+                "v1/flux-pro-1.1",
+                "v1/flux-pro-1.1-ultra",
+                "v1/flux-pro-finetuned",
+                "v1/flux-pro-1.0-canny-finetuned",
+                "v1/flux-pro-1.0-depth-finetuned",
+                "v1/flux-pro-1.0-fill-finetuned",
+                "v1/flux-pro-1.1-ultra-finetuned",
+            ], {"default": "v1/flux-dev"}),
+            "poll_endpoint": (["v1/get_result"], {"default": "v1/get_result"}),
+            "prompt": ("STRING", {"multiline": True}),
+        },
+        "optional": {
+            "api_key_override": ("STRING", {"multiline": False}),
+            "aspect_ratio": ("STRING", {"default": "1:1"}),
+            "control_image": ("IMAGE",),
+            "guidance": ("FLOAT", {"default": 2.5, "min": 1.0, "max": 100, "step": 0.01}),
+            "finetune_id": ("STRING", {"multiline": False}),
+            "finetune_strength": ("FLOAT", {"default": 1.1, "min": 0.0, "max": 2.0}),
+            "height": ("INT", {"default": 1024, "min": 0, "max": 1440, "step": 32}),
+            "high_threshold": ("INT", {"default": 200, "min": 0, "max": 500}),
+            "image_prompt": ("IMAGE",),
+            "image_prompt_strength": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
+            "interval": ("INT", {"default": 1, "min": 1, "max": 10}),
+            "mask": ("MASK",),
+            "low_threshold": ("INT", {"default": 50, "min": 0, "max": 500}),
+            "output_format": (["jpeg", "png"], {"default": "png"}),
+            "prompt_upsampling": ("BOOLEAN", {"default": False, "label_on": "True", "label_off": "False"}),
+            "raw": ("BOOLEAN", {"default": False, "label_on": "True", "label_off": "False"}),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6, "step": 1}),
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "steps": ("INT", {"default": 50, "min": 10, "max": 100}),
+            "webhook_secret": ("STRING", {"multilne": False}),
+            "webhook_url": ("STRING", {"max": 2083, "multiline": False}),
+            "width": ("INT", {"default": 1024, "min": 0, "max": 1440, "step": 32}),
+        },
+    }
+    POLL_ENDPOINT = "v1/get_result"
+    RETURN_TYPES = ("IMAGE",)
+
+    def call(self, *args, **kwargs):
+        if "control_image" in kwargs:
+            kwargs["control_image"] = self._convert_image_to_base64(kwargs["control_image"])
+        if "high_threshold" in kwargs:
+            kwargs["canny_high_threshold"] = int(kwargs.pop("high_threshold"))
+        if "image" in kwargs:
+            kwargs["image"] = self._convert_image_to_base64(kwargs["image"])
+        if "image_prompt" in kwargs and kwargs["image_prompt"] is not None:
+            kwargs["image_prompt"] = self._convert_image_to_base64(kwargs["image_prompt"])
+        if "low_threshold" in kwargs:
+            kwargs["canny_low_threshold"] = int(kwargs.pop("low_threshold"))
+        if "mask" in kwargs and kwargs["mask"] is not None:
+            kwargs["mask"] = self._convert_mask_to_base64(kwargs["mask"])
+        return super().call(*args, **kwargs)
+
+
 class FluxPro(FluxBase):
     API_ENDPOINT = "v1/flux-pro"
     POLL_ENDPOINT = "v1/get_result"
