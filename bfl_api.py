@@ -393,6 +393,123 @@ class FluxUltra11(FluxBase):
         return super().call(*args, **kwargs)
 
 
+# Flux Kontext Pro nodes
+class FluxKontextProEdit(FluxBase):
+    API_ENDPOINT = "v1/flux-kontext-pro"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    CATEGORY = "Flux Kontext"
+
+    INPUT_SPEC = {
+        "required": {
+            "prompt": ("STRING", {"multiline": True}),
+            "input_image": ("IMAGE",),
+        },
+        "optional": {
+            "aspect_ratio": ("STRING", {"default": "1:1"}),
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": False, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "output_format": ("STRING", {"default": "jpeg"}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+    def call(self, *args, **kwargs):
+        if "input_image" in kwargs and kwargs["input_image"] is not None:
+            kwargs["input_image"] = self._convert_image_to_base64(kwargs["input_image"])
+        return super().call(*args, **kwargs)
+
+
+
+class FluxKontextProT2I(FluxBase):
+    API_ENDPOINT = "v1/flux-kontext-pro"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    CATEGORY = "Flux Kontext"
+
+    INPUT_SPEC = {
+        "required": {
+            "prompt": ("STRING", {"multiline": True}),
+        },
+        "optional": {
+            "aspect_ratio": ("STRING", {"default": "1:1"}),
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": False, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "output_format": ("STRING", {"default": "jpeg"}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+    def call(self, *args, **kwargs):
+        return super().call(*args, **kwargs)
+
+
+# Flux Kontext Max nodes
+class FluxKontextMaxEdit(FluxBase):
+    API_ENDPOINT = "v1/flux-kontext-max"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    CATEGORY = "Flux Kontext"
+
+    INPUT_SPEC = {
+        "required": {
+            "prompt": ("STRING", {"multiline": True}),
+            "input_image": ("IMAGE",),
+        },
+        "optional": {
+            "aspect_ratio": ("STRING", {"default": "1:1"}),
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": False, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "output_format": ("STRING", {"default": "jpeg"}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+    def call(self, *args, **kwargs):
+        if "input_image" in kwargs and kwargs["input_image"] is not None:
+            kwargs["input_image"] = self._convert_image_to_base64(kwargs["input_image"])
+        return super().call(*args, **kwargs)
+
+
+class FluxKontextMaxT2I(FluxBase):
+    API_ENDPOINT = "v1/flux-kontext-max"
+    POLL_ENDPOINT = "v1/get_result"
+    ACCEPT = "image/*"
+    CATEGORY = "Flux Kontext"
+
+    INPUT_SPEC = {
+        "required": {
+            "prompt": ("STRING", {"multiline": True}),
+        },
+        "optional": {
+            "aspect_ratio": ("STRING", {"default": "1:1"}),
+            "seed": ("INT", {"default": 0, "min": 0, "max": 4294967294}),
+            "prompt_upsampling": (
+                "BOOLEAN",
+                {"default": False, "label_on": "True", "label_off": "False"},
+            ),
+            "safety_tolerance": ("INT", {"default": 2, "min": 0, "max": 6}),
+            "output_format": ("STRING", {"default": "jpeg"}),
+            "api_key_override": ("STRING", {"multiline": False}),
+        },
+    }
+
+    def call(self, *args, **kwargs):
+        return super().call(*args, **kwargs)
+
+
 class FluxProFinetune(FluxBase):
     API_ENDPOINT = "v1/flux-pro-finetuned"
     POLL_ENDPOINT = "v1/get_result"
